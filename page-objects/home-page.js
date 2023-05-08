@@ -18,7 +18,7 @@ async embassyHomePage() {
   console.log(`Navigated to ${url}`);
 }
   async embassyLogin() {
-    const emailLocator = '[id="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:username"]';
+    const emailLocator = '[class="stylizedInput1"]';
     const passLocator = '[id="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:password"]';
     const privacyPolicy = '[name="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:j_id167"]'
     const loginButton = '[id="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:loginButton"]'
