@@ -18,21 +18,35 @@ async embassyHomePage() {
   console.log(`Navigated to ${url}`);
 }
   async embassyLogin() {
-    const emailLocator = 'tbody tr td input>>nth=0';
-    const passLocator = 'tbody tr td input>>nth=1';
-    const privacyPolicy = 'tbody tr td input>>nth=2'
-    const loginButton = 'tbody tr td input>>nth=3'
-    await page.waitForSelector(emailLocator);
-    await page.waitForSelector(passLocator);
-    await page.locator(emailLocator).click();
-    await page.locator(emailLocator).fill(process.env.EMBASSY_EMAIL);
+    // await page.pause();
+    // const emailLocator = 'tbody tr td input>>nth=0';
+    // const passLocator = 'tbody tr td input>>nth=1';
+    // const privacyPolicy = 'tbody tr td input>>nth=2'
+    // const loginButton = 'tbody tr td input>>nth=3'
+
+    await page.getByLabel('Email').click();
     await page.waitForTimeout(1000);
-    await page.locator(passLocator).click();
-    await page.locator(passLocator).fill(process.env.EMBASSY_PASS);
+    await page.getByLabel('Email').fill(process.env.EMBASSY_EMAIL);
     await page.waitForTimeout(1000);
-    await page.locator(privacyPolicy).click();
+    await page.getByLabel('Password').click();
     await page.waitForTimeout(1000);
-    await page.locator(loginButton).click();
+    await page.getByLabel('Password').fill(process.env.EMBASSY_PASS);
+    await page.waitForTimeout(1000);
+    await page.getByLabel('*I have read and understood the Privacy Policy').check();
+    await page.waitForTimeout(1000);
+    await page.getByRole('button', { name: 'Login' }).click();
+
+    // await page.waitForSelector(emailLocator);
+    // await page.waitForSelector(passLocator);
+    // await page.locator(emailLocator).click();
+    // await page.locator(emailLocator).fill(process.env.EMBASSY_EMAIL);
+    // await page.waitForTimeout(1000);
+    // await page.locator(passLocator).click();
+    // await page.locator(passLocator).fill(process.env.EMBASSY_PASS);
+    // await page.waitForTimeout(1000);
+    // await page.locator(privacyPolicy).click();
+    // await page.waitForTimeout(1000);
+    // await page.locator(loginButton).click();
     const captchBox = '[class="hcaptcha-box"]';
     const captchaElement = await page.$(captchBox);
     if (captchaElement && await captchaElement.isVisible()) {

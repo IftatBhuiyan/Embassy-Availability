@@ -4,10 +4,10 @@
 name: Embassy Availability
 
 on:
-  schedule:
-    # Run every 6 hours, starting at midnight UTC
-    # (i.e., at 12 AM, 6 AM, 12 PM, and 6 PM UTC)
-      - cron: "0 0,6,12,18 * * *"
+  # schedule:
+  #   # Run every 6 hours, starting at midnight UTC
+  #   # (i.e., at 12 AM, 6 AM, 12 PM, and 6 PM UTC)
+  #     - cron: "0 0,6,12,18 * * *"
 
   workflow_dispatch:
 
