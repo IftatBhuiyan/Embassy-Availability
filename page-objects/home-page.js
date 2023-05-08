@@ -1,5 +1,7 @@
 const {expect} = require("@playwright/test");
 //import { test, expect } from '@playwright/test';
+require('dotenv').config();
+
 locators = {
   "username_input": "#user-name",
   "password_input": "#password",
@@ -11,7 +13,7 @@ locators = {
 
 class HomePage{
   async embassyHomePage() {
-    return await page.goto(global.EMBASSY);
+    return await page.goto(process.env.EMBASSY);
   }
   async embassyLogin() {
     const emailLocator = '[id="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:username"]';
@@ -21,10 +23,10 @@ class HomePage{
     await page.waitForSelector(emailLocator);
     await page.waitForSelector(passLocator);
     await page.locator(emailLocator).click();
-    await page.locator(emailLocator).fill(global.EMBASSY_EMAIL);
+    await page.locator(emailLocator).fill(process.env.EMBASSY_EMAIL);
     await page.waitForTimeout(1000);
     await page.locator(passLocator).click();
-    await page.locator(passLocator).fill(global.EMBASSY_PASS);
+    await page.locator(passLocator).fill(process.env.EMBASSY_PASS);
     await page.waitForTimeout(1000);
     await page.locator(privacyPolicy).click();
     await page.waitForTimeout(1000);
