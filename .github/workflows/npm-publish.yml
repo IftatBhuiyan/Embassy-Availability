@@ -25,7 +25,7 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
       - name: Run tests
-        run: npm run embassy
+        run: EMBASSY="${{ secrets.EMBASSY }}" EMBASSY_EMAIL="${{ secrets.EMBASSY_EMAIL }}" EMBASSY_PASS="${{ secrets.EMBASSY_PASS }}" EMAIL="${{ secrets.EMAIL }}" EMAIL_APP_PASS="${{ secrets.EMAIL_APP_PASS }}" NODEMAILER_TO_EMAIL="${{ secrets.NODEMAILER_TO_EMAIL }}" CC2="${{ secrets.CC2 }}" CC1="${{ secrets.CC1 }}" npm run embassy   
 
   # publish-npm:
   #   needs: build
