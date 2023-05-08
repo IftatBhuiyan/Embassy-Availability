@@ -13,7 +13,7 @@ locators = {
 
 class HomePage{
 async embassyHomePage() {
-  await page.goto(process.env.EMBASSY);
+  await page.goto('https://portal.ustraveldocs.com/');
   const url = await page.url();
   console.log(`Navigated to ${url}`);
 }
