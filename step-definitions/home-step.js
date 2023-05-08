@@ -2,6 +2,8 @@ const { Given, When , Then } = require('@cucumber/cucumber');
 const { HomePage } = require('../page-objects/home-page');
 const homePage = new HomePage();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+
 
 Given('I go to Bangaladesh Embassy', async function() {
   await homePage.embassyHomePage();
@@ -51,15 +53,15 @@ async function sendEmail(subject, text, dateTime) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'iftat100@gmail.com',
-      pass: 'ftbrvhjrkozueokb',
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_APP_PASS,
     },
   });
 
   const mailOptions = {
-    from: 'iftat100@gmail.com',
-    to: 'iftatbhuiyan100@gmail.com',
-    cc: ['shahriararnab22@gmail.com', 'Sorafat@mariestopesbd.org'],
+    from: process.env.EMAIL,
+    to: process.env.NODEMAILER_TO_EMAIL,
+    // cc: [process.env.CC1, process.env.CC2],
     subject: subject,
     text: `These are the dates currently available at ${dateTime} for rescheduling:\n${text}`,
   };
