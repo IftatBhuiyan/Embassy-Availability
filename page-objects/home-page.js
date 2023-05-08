@@ -12,8 +12,10 @@ locators = {
 }
 
 class HomePage{
-  async embassyHomePage() {
-    return await page.goto(process.env.EMBASSY);
+  async embassyHomePage(page) {
+    await page.goto(process.env.EMBASSY);
+    const url = await page.url();
+    console.log(`Navigated to ${url}`);
   }
   async embassyLogin() {
     const emailLocator = '[id="loginPage:SiteTemplate:siteLogin:loginComponent:loginForm:username"]';
